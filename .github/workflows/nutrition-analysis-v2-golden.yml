@@ -1,0 +1,41 @@
+name: Nutrition Analysis V2 Golden Evaluation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  golden-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required secrets
+        id: secrets-check
+        run: |
+          missing=0
+          if [[ -z "${{ secrets.ANALYSIS_API_BASE_URL }}" ]]; then missing=1; fi
+          if [[ -z "${{ secrets.ANALYSIS_AUTH_EMAIL }}" ]]; then missing=1; fi
+          if [[ -z "${{ secrets.ANALYSIS_AUTH_PASSWORD }}" ]]; then missing=1; fi
+          echo "missing=${missing}" >> "$GITHUB_OUTPUT"
+
+      - name: Skip when secrets are missing
+        if: steps.secrets-check.outputs.missing == '1'
+        run: |
+          echo "Skipping golden evaluation because required secrets are not configured."
+
+      - name: Run golden evaluation
+        if: steps.secrets-check.outputs.missing == '0'
+        env:
+          API_BASE_URL: ${{ secrets.ANALYSIS_API_BASE_URL }}
+          AUTH_EMAIL: ${{ secrets.ANALYSIS_AUTH_EMAIL }}
+          AUTH_PASSWORD: ${{ secrets.ANALYSIS_AUTH_PASSWORD }}
+          MAX_CALORIES_MAE: "35"
+          MAX_MACRO_MAE: "6"
+          MAX_CALORIES_MAPE: "20"
+          MAX_MACRO_MAPE: "30"
+          MIN_SCHEMA_VALID_RATE: "0.95"
+          MAX_LOCALE_MISMATCH_RATE: "0.01"
+        run: bash ./scripts/eval-analysis-v2-golden.sh
