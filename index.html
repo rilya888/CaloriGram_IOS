@@ -3,98 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CaloriGram - Legal Documents</title>
+    <title>CaloriGram Support</title>
     <style>
+        :root {
+            color-scheme: light;
+            --accent: #31c85b;
+            --ink: #172016;
+            --muted: #5c6a5a;
+            --surface: #ffffff;
+            --soft: #eef8f0;
+            --border: #d6e5d8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            max-width: 800px;
+            color: var(--ink);
+            background: #f7faf6;
+        }
+
+        main {
+            width: min(920px, calc(100% - 32px));
             margin: 0 auto;
-            padding: 40px 20px;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            padding: 48px 0;
         }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: clamp(24px, 5vw, 48px);
+            box-shadow: 0 18px 50px rgba(18, 40, 22, 0.08);
         }
+
         h1 {
-            color: #00FF00;
-            margin-bottom: 10px;
+            margin: 0 0 8px;
+            font-size: clamp(32px, 7vw, 56px);
+            line-height: 1.05;
         }
+
+        h2 {
+            margin: 0 0 12px;
+            font-size: 22px;
+        }
+
+        p {
+            margin: 0 0 16px;
+            color: var(--muted);
+        }
+
+        a {
+            color: #176b31;
+            font-weight: 700;
+        }
+
         .subtitle {
-            color: #666;
-            margin-bottom: 30px;
+            max-width: 680px;
+            font-size: 18px;
+            margin-bottom: 32px;
         }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            background: var(--soft);
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: #09220f;
+            background: var(--accent);
+            text-decoration: none;
+        }
+
         .links {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 40px;
-        }
-        .link-card {
-            display: block;
-            padding: 24px;
-            border: 2px solid #00FF00;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s ease;
-            background: #f9f9f9;
-        }
-        .link-card:hover {
-            background: #f0fff0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 255, 0, 0.2);
-        }
-        .link-card h2 {
-            color: #00FF00;
-            margin: 0 0 10px 0;
-            font-size: 24px;
-        }
-        .link-card p {
-            margin: 0;
-            color: #666;
-        }
-        .icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        .language-note {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f0f0f0;
-            border-radius: 5px;
-            font-size: 14px;
-            color: #666;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>CaloriGram</h1>
-        <p class="subtitle">Legal Documents</p>
-        
-        <div class="links">
-            <a href="privacy-policy.html" class="link-card">
-                <div class="icon">🔒</div>
-                <h2>Privacy Policy</h2>
-                <p>Learn how we collect, use, and protect your personal data</p>
-            </a>
-            
-            <a href="terms-of-service.html" class="link-card">
-                <div class="icon">📄</div>
-                <h2>Terms of Service</h2>
-                <p>Read the terms and conditions for using CaloriGram</p>
-            </a>
-        </div>
-        
-        <div class="language-note">
-            <strong>Note:</strong> Documents are available in English and Russian. Use the language switcher on each page to change language.
-        </div>
-    </div>
+    <main>
+        <section class="panel">
+            <h1>CaloriGram Support</h1>
+            <p class="subtitle">Get help with your CaloriGram account, nutrition diary, AI food analysis, subscriptions, Apple Health integration, privacy, or account deletion.</p>
+
+            <div class="grid">
+                <article class="card">
+                    <h2>Contact Support</h2>
+                    <p>Email us with your question and include your app version, device model, and a short description of the issue.</p>
+                    <p><a class="button" href="mailto:support@calorigram.app">support@calorigram.app</a></p>
+                </article>
+
+                <article class="card">
+                    <h2>Response Time</h2>
+                    <p>We review support requests within 2 business days. For subscription or billing issues, you can also manage purchases in your Apple ID subscription settings.</p>
+                </article>
+
+                <article class="card">
+                    <h2>Privacy Requests</h2>
+                    <p>You can request account deletion or data export by email. CaloriGram also includes account deletion controls inside the app settings.</p>
+                </article>
+            </div>
+
+            <div class="links" aria-label="Legal documents">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
